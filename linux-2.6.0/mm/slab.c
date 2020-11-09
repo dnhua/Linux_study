@@ -156,7 +156,7 @@
 #define BUFCTL_END	0xffffFFFF
 #define BUFCTL_FREE	0xffffFFFE
 #define	SLAB_LIMIT	0xffffFFFD
-typedef unsigned int kmem_bufctl_t;
+typedef unsigned int kmem_bufctl_t; 
 
 /* Max number of objs-per-slab for caches which use off-slab slabs.
  * Needed to avoid a possible looping condition in cache_grow().
@@ -171,11 +171,11 @@ static unsigned long offslab_limit;
  * Slabs are chained into three list: fully used, partial, fully free slabs.
  */
 struct slab {
-	struct list_head	list;
-	unsigned long		colouroff;
-	void			*s_mem;		/* including colour offset */
+	struct list_head	list;  //slab描述符三个双向循环链表中的一个使用的指针
+	unsigned long		colouroff;  //slab第一个对象的偏移
+	void			*s_mem;		/* slab中的第一个对象 */
 	unsigned int		inuse;		/* num of objs active in slab */
-	kmem_bufctl_t		free;
+	kmem_bufctl_t		free;  //slab中下一个空闲对象的下标
 };
 
 /*
